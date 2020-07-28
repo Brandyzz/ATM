@@ -8,18 +8,27 @@ import java.util.Map;
 
 public class Bank{
     private Client client;
-    private static Map<String, Client> clientInformation = new HashMap<String, Client>();
+    private static Map<String, Client> clientsInformation = new HashMap<String, Client>();
     private int courseEUR;
     private int courseUSD;
     private int courseGBP;
+    private int balance = 3423;
 
     public Bank(){}
 
-    protected Client getClient() {
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public Client getClient() {
         return client;
     }
 
-    protected void setClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
