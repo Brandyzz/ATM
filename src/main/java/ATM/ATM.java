@@ -8,8 +8,7 @@ public class ATM {
     private Bank bank;
     private Client client;
 
-    public ATM(Client client, Bank bank){
-        this.client = client;
+    public ATM(Bank bank){
         this.bank = bank;
     }
 
@@ -18,6 +17,14 @@ public class ATM {
 
     public void enterPinCode(String pinCode){
 
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
     }
 
     public int getBalance(){

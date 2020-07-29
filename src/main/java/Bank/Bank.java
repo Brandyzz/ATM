@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Bank{
     private Client client;
-    private static Map<String, Client> clientsInformation = new HashMap<String, Client>();
+  //  private static Map<String, Client> clientsInformation = new HashMap<String, Client>();
     private int courseEUR;
     private int courseUSD;
     private int courseGBP;
