@@ -49,15 +49,6 @@ public class ATM {
 
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-        this.bank = client.getBank();
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
     private Client findClient(Client client){
         if (client.getBank()==null)
             return null;
@@ -73,5 +64,18 @@ public class ATM {
         if (client == null)
             System.out.println("Client not found!");
         return bank.getClientsInformation().get(client).getAmount();
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+        this.bank = client.getBank();
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public Client getClient() {
+        return client;
     }
 }

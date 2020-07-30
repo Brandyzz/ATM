@@ -19,6 +19,13 @@ public class Bank{
         createAccount(client);
     }
 
+    public BankAccount createAccount(Client client){
+        Random random = new Random();
+        BankAccount account = new BankAccount(client, random.nextInt());
+        setClientsInformation(client,account);
+        return account;
+    }
+
     protected void setCourseEUR(int courseEUR) {
         this.courseEUR = courseEUR;
     }
@@ -29,13 +36,6 @@ public class Bank{
 
     protected void setCourseGBP(int courseGBP) {
         this.courseGBP = courseGBP;
-    }
-
-    public BankAccount createAccount(Client client){
-        Random random = new Random();
-        BankAccount account = new BankAccount(client, random.nextInt());
-        setClientsInformation(client,account);
-        return account;
     }
 
     public static void setClientsInformation(Client client,BankAccount bankAccount) {
