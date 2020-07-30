@@ -29,7 +29,6 @@ public class ATM {
 
     public int getBalance(){
         bank.setClient(client);
-       return bank.getBalance();
+       return bank.getClient().getAccount().getAmount();
     }
-
 }

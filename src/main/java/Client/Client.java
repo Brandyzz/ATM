@@ -1,19 +1,21 @@
 package Client;
 
+import Bank.Bank.*;
+import Bank.BankAccount;
+
 public class Client {
 
-    private String bankAccountNumber;
     private String firstName;
     private String secondName;
+    private final BankAccount account = new BankAccount(this);
 
-    public Client(String bankAccountNumber, String firstName, String secondName) {
-        this.bankAccountNumber = bankAccountNumber;
+    public Client(String firstName, String secondName) {
         this.firstName = firstName;
         this.secondName = secondName;
     }
 
-    public void setBankAccountNumber(String bankAccountNumber) {
-        this.bankAccountNumber = bankAccountNumber;
+    public BankAccount getAccount() {
+        return account;
     }
 
     public void setFirstName(String firstName) {
@@ -22,10 +24,6 @@ public class Client {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
-    }
-
-    public String getBankAccountNumber() {
-        return bankAccountNumber;
     }
 
     public String getFirstName() {
