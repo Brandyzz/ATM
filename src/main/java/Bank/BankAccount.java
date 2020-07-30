@@ -5,17 +5,18 @@ import Client.Client;
 import java.util.Random;
 
 public class BankAccount {
+    private String pinCode = "5465";
     private int bankAccountNumber;
     private String firstName;
     private String secondName;
     private int amount;
     private final static Random rand = new Random();
 
-    public BankAccount(String firstName, String secondName, int amount) {
+    public BankAccount(String firstName, String secondName, String pinCode) {
         this.bankAccountNumber = rand.nextInt();
         this.firstName = firstName;
         this.secondName = secondName;
-        this.amount = amount;
+        this.pinCode = pinCode;
     }
 
     public BankAccount(Client client){
@@ -24,9 +25,16 @@ public class BankAccount {
         this.bankAccountNumber = rand.nextInt();
         if (this.bankAccountNumber < 0)
             this.bankAccountNumber *= -1;
+
     }
 
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
+    }
 
+    public String getPinCode() {
+        return pinCode;
+    }
 
     public BankAccount() {
     }
