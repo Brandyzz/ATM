@@ -33,8 +33,7 @@ public class Bank{
 
     public BankAccount createAccount(Client client){
         Random random = new Random();
-        int accountNum = random.nextInt();
-        BankAccount account = new BankAccount(client, accountNum);
+        BankAccount account = new BankAccount(client, random.nextInt());
         setClientsInformation(client,account);
         return account;
     }
