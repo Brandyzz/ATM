@@ -10,5 +10,6 @@ public class Application {
         atm.setClient(client);
         client.getAccount().setAmount(23456);
         System.out.println(atm.getBalance());
+        System.out.println(client.getAccount().getBankAccountNumber());
     }
 }

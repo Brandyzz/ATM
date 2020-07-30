@@ -21,8 +21,12 @@ public class BankAccount {
     public BankAccount(Client client){
         this.firstName = client.getFirstName();
         this.secondName = client.getSecondName();
-        this.bankAccountNumber++;
+        this.bankAccountNumber = rand.nextInt();
+        if (this.bankAccountNumber < 0)
+            this.bankAccountNumber *= -1;
     }
+
+
 
     public BankAccount() {
     }
