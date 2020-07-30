@@ -10,8 +10,7 @@ public final class BankAccount {
     private String firstName;
     private String secondName;
     private int amount = 34567;
-    private final static Random rand = new Random();
-    private Client client;
+    private final Client client;
 
     public BankAccount(Client client, int bankAccountNumber){
         this.firstName = client.getFirstName();
