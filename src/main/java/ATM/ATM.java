@@ -1,11 +1,12 @@
 package ATM;
 
-import Bank.Bank;
+import Bank.*;
 import Client.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 public class ATM {
 
@@ -26,7 +27,7 @@ public class ATM {
 
         System.out.println("Please enter your pin code");
         while (tries < 4) {
-            if (client.getAccount().getPinCode().equals(pinCode.readLine())) {
+            if (client.getBank().getClientsInformation().get(client).getPinCode().equals(pinCode.readLine())) {
                 result = true;
                 System.out.println("Successfully!");
                 break;
@@ -47,8 +48,18 @@ public class ATM {
         return client;
     }
 
+    private int findClientAndReturnAmount(Client client){
+        for (Map.Entry<Client, BankAccount> pair : bank.getClientsInformation().entrySet()) {
+            if (pair.getKey().equals(client))
+                return pair.getKey().getBank().getClientsInformation().get(pair.getKey()).getAmount();
+        }
+        return 0;
+    }
+
     public int getBalance() {
-        bank.setClient(client);
-        return bank.getClient().getAccount().getAmount();
+        int result = findClientAndReturnAmount(client);
+        if (result == 0)
+            System.out.println("Client not found!");
+        return result;
     }
 }

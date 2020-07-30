@@ -1,21 +1,23 @@
 package Client;
 
-import Bank.Bank.*;
-import Bank.BankAccount;
+import Bank.*;
 
 public class Client {
 
     private String firstName;
     private String secondName;
-    private final BankAccount account = new BankAccount(this);
+    private Bank bank;
 
-    public Client(String firstName, String secondName) {
+    public Client(String firstName, String secondName, Bank bank) {
         this.firstName = firstName;
         this.secondName = secondName;
+        this.bank = bank;
+        this.bank.setClient(this);
+        this.bank.createAccount(this);
     }
 
-    public BankAccount getAccount() {
-        return account;
+    public Bank getBank() {
+        return bank;
     }
 
     public void setFirstName(String firstName) {

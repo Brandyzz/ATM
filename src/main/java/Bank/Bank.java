@@ -5,24 +5,16 @@ import Client.Client;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Bank{
     private Client client;
-  //  private static Map<Client, Account> clientsInformation = new HashMap<String, Client>();
+    private final static Map<Client, BankAccount> clientsInformation = new HashMap<Client, BankAccount>();
     private int courseEUR;
     private int courseUSD;
     private int courseGBP;
-    private int balance = 3423;
 
     public Bank(){}
-
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-
-    public int getBalance() {
-        return balance;
-    }
 
     public Client getClient() {
         return client;
@@ -42,6 +34,22 @@ public class Bank{
 
     protected void setCourseGBP(int courseGBP) {
         this.courseGBP = courseGBP;
+    }
+
+    public BankAccount createAccount(Client client){
+        Random random = new Random();
+        int accountNum = random.nextInt();
+        BankAccount account = new BankAccount(client, accountNum);
+        setClientsInformation(client,account);
+        return account;
+    }
+
+    public static void setClientsInformation(Client client,BankAccount bankAccount) {
+        clientsInformation.put(client, bankAccount);
+    }
+
+    public Map<Client, BankAccount> getClientsInformation() {
+        return clientsInformation;
     }
 
     public int getCourseEUR() {
