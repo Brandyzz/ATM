@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class Bank{
-    private Client client;
     private final static Map<Client, BankAccount> clientsInformation = new HashMap<Client, BankAccount>();
     private int courseEUR;
     private int courseUSD;
@@ -16,12 +15,8 @@ public class Bank{
 
     public Bank(){}
 
-    public Client getClient() {
-        return client;
-    }
-
     public void setClient(Client client) {
-        this.client = client;
+        createAccount(client);
     }
 
     protected void setCourseEUR(int courseEUR) {

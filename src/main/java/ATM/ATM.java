@@ -17,10 +17,19 @@ public class ATM {
         this.bank = bank;
     }
 
+    public ATM(Bank bank, Client client) {
+        this.bank = bank;
+        this.client = client;
+    }
+
     public ATM() {
     }
 
     public boolean enterPinCode() throws IOException {
+        if (findClient(client) == null) {
+            System.out.println("Client not found!");
+            return false;
+        }
         BufferedReader pinCode = new BufferedReader(new InputStreamReader(System.in));
         int tries = 0;
         boolean result = false;
@@ -42,24 +51,27 @@ public class ATM {
 
     public void setClient(Client client) {
         this.client = client;
+        this.bank = client.getBank();
     }
 
     public Client getClient() {
         return client;
     }
 
-    private int findClientAndReturnAmount(Client client){
+    private Client findClient(Client client){
+        if (client.getBank()==null)
+            return null;
         for (Map.Entry<Client, BankAccount> pair : bank.getClientsInformation().entrySet()) {
             if (pair.getKey().equals(client))
-                return pair.getKey().getBank().getClientsInformation().get(pair.getKey()).getAmount();
+                return pair.getKey();
         }
-        return 0;
+        return null;
     }
 
     public int getBalance() {
-        int result = findClientAndReturnAmount(client);
-        if (result == 0)
+        Client client = findClient(this.client);
+        if (client == null)
             System.out.println("Client not found!");
-        return result;
+        return bank.getClientsInformation().get(client).getAmount();
     }
 }

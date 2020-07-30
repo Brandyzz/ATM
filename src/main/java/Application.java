@@ -9,11 +9,9 @@ public class Application {
 
         Bank bank = new Bank();
         Client client = new Client("John", "Snow", bank);
-        ATM atm = new ATM(client.getBank());
+        ATM atm = new ATM();
         atm.setClient(client);
         if(atm.enterPinCode())
             System.out.println("Your balance: "+atm.getBalance());
-        else
-            System.out.println("Too many tries! Exit...");
     }
 }

@@ -13,7 +13,9 @@ public class Client {
         this.secondName = secondName;
         this.bank = bank;
         this.bank.setClient(this);
-        this.bank.createAccount(this);
+    }
+
+    public Client() {
     }
 
     public Bank getBank() {

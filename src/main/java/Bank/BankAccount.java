@@ -19,6 +19,10 @@ public final class BankAccount {
         this.bankAccountNumber = bankAccountNumber;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
     public void setPinCode(String pinCode) {
         this.pinCode = pinCode;
     }
