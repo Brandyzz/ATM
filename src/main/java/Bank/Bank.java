@@ -1,6 +1,5 @@
 package Bank;
 
-import ATM.ATM;
 import Client.Client;
 
 import java.io.BufferedReader;
@@ -11,10 +10,15 @@ import java.util.Map;
 import java.util.Random;
 
 public class Bank{
+    private String title;
     private final static Map<Client, BankAccount> clientsInformation = new HashMap<Client, BankAccount>();
     private int courseEUR;
     private int courseUSD;
     private int courseGBP;
+
+    public Bank(String title) {
+        this.title = title;
+    }
 
     public Bank(){}
 
@@ -42,10 +46,9 @@ public class Bank{
                 continue;
             }
             account.setPinCode(builder);
-            break;
+            setClientsInformation(client,account);
+            return;
         }
-        pinCodeCreate.close();
-        setClientsInformation(client,account);
     }
 
     protected void setCourseEUR(int courseEUR) {
@@ -78,5 +81,13 @@ public class Bank{
 
     public int getCourseGBP() {
         return courseGBP;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

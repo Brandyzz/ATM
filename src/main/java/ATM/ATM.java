@@ -25,6 +25,18 @@ public class ATM {
     public ATM() {
     }
 
+    public void greetings() {
+        try {
+            if (enterPinCode()) {
+                System.out.println("Welcome to " + bank.getTitle());
+                System.out.println('\n' + "Options: " + '\n' + "1: Get balance" + '\n'+"exit: for finish the job"+'\n');
+                System.out.println("Enter the option number:");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean enterPinCode() throws IOException {
         if (findClient(client) == null) {
             System.out.println("Client not found!");
@@ -38,15 +50,13 @@ public class ATM {
         while (tries < 4) {
             if (client.getBank().getClientsInformation().get(client).getPinCode().equals(pinCode.readLine())) {
                 result = true;
-                System.out.println("Successfully!");
+                System.out.println("Successfully!"+'\n');
                 break;
             }
             System.out.println("Incorrect! Please try again");
             tries++;
         }
-        pinCode.close();
         return result;
-
     }
 
     private Client findClient(Client client){
