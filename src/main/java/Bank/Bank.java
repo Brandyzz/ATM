@@ -3,6 +3,9 @@ package Bank;
 import ATM.ATM;
 import Client.Client;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -16,12 +19,32 @@ public class Bank{
     public Bank(){}
 
     public void setClient(Client client) {
-        createAccount(client);
+        try {
+            createAccount(client);
+        } catch (IOException e) {
+            System.out.println("Error!");
+        }
     }
 
-    public void createAccount(Client client){
+    public void createAccount(Client client) throws IOException {
         Random random = new Random();
         BankAccount account = new BankAccount(client, random.nextInt());
+        System.out.println("Enter your new pin code");
+        BufferedReader pinCodeCreate = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+            String builder = pinCodeCreate.readLine();
+            if (!builder.matches("\\d+")) {
+                System.out.println("The pin code must contain only numbers! Try again.");
+                continue;
+            }
+            if(builder.length() != 4) {
+                System.out.println("The pin code must consist of 4 numbers! Try again.");
+                continue;
+            }
+            account.setPinCode(builder);
+            break;
+        }
+
         setClientsInformation(client,account);
     }
 

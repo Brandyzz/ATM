@@ -5,7 +5,7 @@ import Client.Client;
 import java.util.Random;
 
 public final class BankAccount {
-    private String pinCode = "5465";
+    private String pinCode;
     private final int bankAccountNumber;
     private String firstName;
     private String secondName;
