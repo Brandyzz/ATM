@@ -44,7 +44,7 @@ public class Bank{
             account.setPinCode(builder);
             break;
         }
-
+        pinCodeCreate.close();
         setClientsInformation(client,account);
     }
 
