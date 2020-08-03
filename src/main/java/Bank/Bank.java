@@ -19,11 +19,10 @@ public class Bank{
         createAccount(client);
     }
 
-    public BankAccount createAccount(Client client){
+    public void createAccount(Client client){
         Random random = new Random();
         BankAccount account = new BankAccount(client, random.nextInt());
         setClientsInformation(client,account);
-        return account;
     }
 
     protected void setCourseEUR(int courseEUR) {
