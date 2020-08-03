@@ -29,7 +29,7 @@ public class ATM {
         try {
             if (enterPinCode()) {
                 System.out.println("Welcome to " + bank.getTitle());
-                System.out.println('\n' + "Options: " + '\n' + "1: Get balance" + '\n'+"exit: for finish the job"+'\n');
+                System.out.println('\n' + "Options: " + '\n' + "1: Get balance" + '\n'+"0: for exit"+'\n');
                 System.out.println("Enter the option number:");
             }
         } catch (IOException e) {

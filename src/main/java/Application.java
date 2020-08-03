@@ -15,19 +15,16 @@ public class Application {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         atm.setClient(client);
         atm.greetings();
-        String options = reader.readLine();
-        reader.close();
-        while (true) {
-            if (options.equals("exit")) {
-                System.out.println("Thank you for your visit!");
-                break;
-            }
-            else if (options.equals("1")) {
+        int opt = -1;
+        while (opt != 0) {
+            opt = Integer.parseInt(reader.readLine());
+             if (opt == 1) {
                 System.out.println("Your balance: " + atm.getBalance());
-                break;
             }
-            else
+            else if (opt > 1)
                 System.out.println("No such option!");
         }
+        System.out.println("Finishing... Thanks for visit!");
+        reader.close();
     }
 }
