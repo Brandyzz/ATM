@@ -70,9 +70,6 @@ public class ATM {
     }
 
     public int getBalance() {
-        Client client = findClient(this.client);
-        if (client == null)
-            System.out.println("Client not found!");
         return bank.getClientsInformation().get(client).getAmount();
     }
 
