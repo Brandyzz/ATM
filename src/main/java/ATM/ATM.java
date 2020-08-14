@@ -17,8 +17,8 @@ public class ATM {
         this.bank = bank;
     }
 
-    public ATM(Bank bank, Client client) {
-        this.bank = bank;
+    public ATM(Client client) {
+        this.bank = client.getBank();
         this.client = client;
     }
 

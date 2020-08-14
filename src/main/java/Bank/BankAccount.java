@@ -2,17 +2,15 @@ package Bank;
 
 import Client.Client;
 
-import java.util.Random;
-
 public final class BankAccount {
     private String pinCode;
-    private final int bankAccountNumber;
+    private final String bankAccountNumber;
     private int amount = 34567;
     private final Client client;
 
-    public BankAccount(Client client, int bankAccountNumber){
+    public BankAccount(Client client, Integer bankAccountNumber){
         this.client = client;
-        this.bankAccountNumber = bankAccountNumber;
+        this.bankAccountNumber = bankAccountNumber.toString();
     }
 
     public Client getClient() {
@@ -31,7 +29,7 @@ public final class BankAccount {
         this.amount = amount;
     }
 
-    public int getBankAccountNumber() {
+    public String getBankAccountNumber() {
         return bankAccountNumber;
     }
 
