@@ -11,7 +11,7 @@ public class Application {
 
         Bank bank = new Bank("Sberbank");
         Client client = new Client("John", "Snow", bank);
-        client.getBank().createCard(client);
+        bank.createCard(client);
         ATM atm = new ATM();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         atm.setClient(client.getCard());

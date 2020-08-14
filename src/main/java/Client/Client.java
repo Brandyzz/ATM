@@ -22,7 +22,7 @@ public class Client {
 //    }
 
 
-    public DebitCard getCard() {
+    public DebitCard getCard() throws NullPointerException {
         return card;
     }
 
