@@ -13,15 +13,6 @@ public class ATM {
     private Bank bank;
     private Client client;
 
-    public ATM(Bank bank) {
-        this.bank = bank;
-    }
-
-    public ATM(Client client) {
-        this.bank = client.getBank();
-        this.client = client;
-    }
-
     public ATM() {
     }
 
@@ -74,7 +65,7 @@ public class ATM {
     }
 
     private Client findClient(Client client){
-        if (client.getBank()==null)
+        if (client.getCard().getBank() == null)
             return null;
         for (Map.Entry<Client, BankAccount> pair : bank.getClientsInformation().entrySet()) {
             if (pair.getKey().equals(client))
@@ -89,7 +80,9 @@ public class ATM {
 
     public void setClient(DebitCard card) {
         this.client = card.getClient();
-        this.bank = this.client.getBank();
+        if (card.getBank() == null)
+            throw new NullPointerException();
+        this.bank = card.getBank();
     }
 
     public Bank getBank() {

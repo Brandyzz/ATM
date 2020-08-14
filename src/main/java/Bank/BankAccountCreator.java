@@ -20,7 +20,7 @@ public class BankAccountCreator {
 
     public void createCard(Client client){
         try {
-            new DebitCard(client.getBank(), client);
+            new DebitCard(bank, client);
         } catch (IOException e) {
             e.printStackTrace();
         }

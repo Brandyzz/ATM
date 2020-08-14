@@ -17,7 +17,8 @@ public class DebitCard {
         this.bank = bank;
         this.client = client;
         this.bankAccount = bank.getClientsInformation().get(client);
-        System.out.println("Enter new pin code");
+        System.out.println("Creating new Card.");
+        System.out.println("Enter new pin code.");
         BufferedReader pinCodeCreate = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder builder = new StringBuilder();
         while (true) {

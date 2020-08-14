@@ -6,14 +6,12 @@ public class Client {
 
     private String firstName;
     private String secondName;
-    private Bank bank;
     private DebitCard card;
 
     public Client(String firstName, String secondName, Bank bank) {
         this.firstName = firstName;
         this.secondName = secondName;
-        this.bank = bank;
-        this.bank.setClient(this);
+        bank.setClient(this);
     }
 
     public Client() {
@@ -23,9 +21,6 @@ public class Client {
 //        return bank.getClientsInformation().get(this);
 //    }
 
-    public Bank getBank() {
-        return bank;
-    }
 
     public DebitCard getCard() {
         return card;
