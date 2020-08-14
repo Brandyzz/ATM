@@ -7,6 +7,7 @@ public class Client {
     private String firstName;
     private String secondName;
     private Bank bank;
+    private DebitCard card;
 
     public Client(String firstName, String secondName, Bank bank) {
         this.firstName = firstName;
@@ -18,8 +19,20 @@ public class Client {
     public Client() {
     }
 
+//    public BankAccount getAccount(){
+//        return bank.getClientsInformation().get(this);
+//    }
+
     public Bank getBank() {
         return bank;
+    }
+
+    public DebitCard getCard() {
+        return card;
+    }
+
+    public void setCard(DebitCard card) {
+        this.card = card;
     }
 
     public void setFirstName(String firstName) {
