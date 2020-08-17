@@ -2,20 +2,20 @@ package Bank;
 
 import Client.Client;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class BankAccount {
     private final String bankAccountNumber;
     private final Client client;
-    private final List<DebitCard> cards = new ArrayList<DebitCard>();
+    private final Set<DebitCard> cards = new HashSet<DebitCard>();
 
     public BankAccount(Client client, Integer bankAccountNumber){
         this.client = client;
         this.bankAccountNumber = bankAccountNumber.toString();
     }
 
-    public List<DebitCard> getCards() {
+    public Set<DebitCard> getCards() {
         return cards;
     }
 
