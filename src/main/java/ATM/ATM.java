@@ -78,10 +78,10 @@ public class ATM {
         return client.getCard().getBalance();
     }
 
-    public void setClient(DebitCard card) {
+    public void setClient(DebitCard card) throws NoSuchClientException {
         this.client = card.getClient();
         if (card.getBank() == null)
-            throw new NullPointerException();
+            throw new NoSuchClientException("No such client!");
         this.bank = card.getBank();
     }
 
