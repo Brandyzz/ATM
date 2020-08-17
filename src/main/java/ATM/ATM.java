@@ -81,7 +81,7 @@ public class ATM {
     public void setClient(DebitCard card) throws NoSuchClientException {
         this.client = card.getClient();
         if (card.getBank() == null)
-            throw new NoSuchClientException("No such client!");
+            throw new NoSuchClientException("Bank not found!");
         this.bank = card.getBank();
     }
 
