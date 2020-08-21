@@ -15,7 +15,6 @@ public class Application {
         ATM atm = new ATM();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         atm.setClient(client.getCard());
-        System.out.println(client.getCard().getBankAccount().getBankAccountNumber());
         atm.greetings();
         reader.close();
     }
