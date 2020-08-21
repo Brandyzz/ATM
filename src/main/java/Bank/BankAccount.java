@@ -12,6 +12,8 @@ public final class BankAccount {
 
     public BankAccount(Client client, Integer bankAccountNumber){
         this.client = client;
+        if (bankAccountNumber < 0)
+            bankAccountNumber *= -1;
         this.bankAccountNumber = bankAccountNumber.toString();
     }
 
