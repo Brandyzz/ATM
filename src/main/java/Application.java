@@ -14,6 +14,7 @@ public class Application {
         bank.createCard(client);
         ATM atm = new ATM();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         atm.setClient(client.getCard());
         atm.greetings();
         reader.close();

@@ -2,16 +2,19 @@ package Bank;
 
 import Client.Client;
 
+import javax.swing.text.html.Option;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public final class BankAccount {
     private final String bankAccountNumber;
     private final Client client;
-    private final Set<DebitCard> cards = new HashSet<DebitCard>();
+    private final Set<DebitCard> cards;
 
     public BankAccount(Client client, Integer bankAccountNumber){
         this.client = client;
+        cards = new HashSet<DebitCard>();
         if (bankAccountNumber < 0)
             bankAccountNumber *= -1;
         this.bankAccountNumber = bankAccountNumber.toString();
@@ -22,15 +25,13 @@ public final class BankAccount {
     }
 
     public void setCard(DebitCard card){
-        this.cards.add(card);
+        cards.add(card);
     }
 
-    public DebitCard findCard(final DebitCard card){
-        for (DebitCard finder : cards) {
-            if(finder.equals(card))
-                return finder;
-        }
-        return null;
+    public Optional<DebitCard> findCard( DebitCard card){
+        return cards.stream()
+                .filter(cards -> cards.equals(card))
+                .findFirst();
     }
 
     public Client getClient() {

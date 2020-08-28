@@ -18,12 +18,8 @@ public class BankAccountCreator {
         bank.setClientsInformation(client,account);
     }
 
-    public void createCard(Client client){
-        try {
+    public void createCard(Client client) throws IOException{
             new DebitCard(bank, client);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public Bank getBank() {

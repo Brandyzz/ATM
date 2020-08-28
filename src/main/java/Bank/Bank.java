@@ -2,31 +2,33 @@ package Bank;
 
 import Client.Client;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Bank{
     private String title;
-    private final Map<Client, BankAccount> clientsInformation = new HashMap<Client, BankAccount>();
+    private Map<Client, BankAccount> clientsInformation;
     private int courseEUR;
     private int courseUSD;
     private int courseGBP;
     private final BankAccountCreator bankAccountCreator;
 
     public Bank(String title) {
+        clientsInformation = new HashMap<Client, BankAccount>();
         this.title = title;
-        this.bankAccountCreator = new BankAccountCreator(this);
+        bankAccountCreator = new BankAccountCreator(this);
     }
 
     public Bank(){
-        this.bankAccountCreator = new BankAccountCreator(this);
+        bankAccountCreator = new BankAccountCreator(this);
     }
 
     public void setClient(Client client) {
             bankAccountCreator.createAccount(client);
     }
 
-    public void createCard(Client client){
+    public void createCard(Client client) throws IOException {
         bankAccountCreator.createCard(client);
     }
 
