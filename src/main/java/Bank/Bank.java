@@ -2,53 +2,34 @@ package Bank;
 
 import Client.Client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class Bank{
     private String title;
-    private final static Map<Client, BankAccount> clientsInformation = new HashMap<Client, BankAccount>();
+    private Map<Client, BankAccount> clientsInformation;
     private int courseEUR;
     private int courseUSD;
     private int courseGBP;
+    private final BankAccountCreator bankAccountCreator;
 
     public Bank(String title) {
+        clientsInformation = new HashMap<Client, BankAccount>();
         this.title = title;
+        bankAccountCreator = new BankAccountCreator(this);
     }
 
-    public Bank(){}
+    public Bank(){
+        bankAccountCreator = new BankAccountCreator(this);
+    }
 
     public void setClient(Client client) {
-        try {
-            createAccount(client);
-        } catch (IOException e) {
-            System.out.println("Error!");
-        }
+            bankAccountCreator.createAccount(client);
     }
 
-    public void createAccount(Client client) throws IOException {
-        Random random = new Random();
-        BankAccount account = new BankAccount(client, random.nextInt());
-        System.out.println("Enter your new pin code");
-        BufferedReader pinCodeCreate = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            String builder = pinCodeCreate.readLine();
-            if (!builder.matches("\\d+")) {
-                System.out.println("The pin code must contain only numbers! Try again.");
-                continue;
-            }
-            if(builder.length() != 4) {
-                System.out.println("The pin code must consist of 4 numbers! Try again.");
-                continue;
-            }
-            account.setPinCode(builder);
-            setClientsInformation(client,account);
-            return;
-        }
+    public void createCard(Client client) throws IOException {
+        bankAccountCreator.createCard(client);
     }
 
     protected void setCourseEUR(int courseEUR) {
@@ -63,7 +44,7 @@ public class Bank{
         this.courseGBP = courseGBP;
     }
 
-    public static void setClientsInformation(Client client,BankAccount bankAccount) {
+    public void setClientsInformation(Client client,BankAccount bankAccount) {
         clientsInformation.put(client, bankAccount);
     }
 

@@ -6,20 +6,28 @@ public class Client {
 
     private String firstName;
     private String secondName;
-    private Bank bank;
+    private DebitCard card;
 
     public Client(String firstName, String secondName, Bank bank) {
         this.firstName = firstName;
         this.secondName = secondName;
-        this.bank = bank;
-        this.bank.setClient(this);
+        bank.setClient(this);
     }
 
     public Client() {
     }
 
-    public Bank getBank() {
-        return bank;
+//    public BankAccount getAccount(){
+//        return bank.getClientsInformation().get(this);
+//    }
+
+
+    public DebitCard getCard() throws NullPointerException {
+        return card;
+    }
+
+    public void setCard(DebitCard card) {
+        this.card = card;
     }
 
     public void setFirstName(String firstName) {

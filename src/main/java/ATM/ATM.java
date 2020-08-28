@@ -13,16 +13,20 @@ public class ATM {
     private Bank bank;
     private Client client;
 
-    public ATM(Bank bank) {
-        this.bank = bank;
-    }
-
-    public ATM(Client client) {
-        this.bank = client.getBank();
-        this.client = client;
-    }
-
     public ATM() {
+    }
+
+    private void inWork() throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int opt = -1;
+        while (opt != 0) {
+            opt = Integer.parseInt(reader.readLine());
+            if (opt == 1) {
+                System.out.println("Your balance: " + getBalance());
+            }
+            else if (opt > 1)
+                System.out.println("No such option!");
+        }
     }
 
     public void greetings() {
@@ -31,36 +35,37 @@ public class ATM {
                 System.out.println("Welcome to " + bank.getTitle());
                 System.out.println('\n' + "Options: " + '\n' + "1: Get balance" + '\n'+"0: for exit"+'\n');
                 System.out.println("Enter the option number:");
+                inWork();
+                System.out.println("Finishing... Thanks for visit!");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean enterPinCode() throws IOException {
+    public boolean enterPinCode() throws IOException{
         if (findClient(client) == null) {
             System.out.println("Client not found!");
             return false;
         }
         BufferedReader pinCode = new BufferedReader(new InputStreamReader(System.in));
-        int tries = 0;
-        boolean result = false;
+        int attempt = 0;
 
         System.out.println("Please enter your pin code");
-        while (tries < 4) {
-            if (client.getBank().getClientsInformation().get(client).getPinCode().equals(pinCode.readLine())) {
-                result = true;
-                System.out.println("Successfully!"+'\n');
-                break;
+        while (attempt < 4) {
+                if (client.getCard().getPinCode().toString().equals(pinCode.readLine())) {
+                    System.out.println("Successfully!"+'\n');
+                    return true;
             }
             System.out.println("Incorrect! Please try again");
-            tries++;
+            attempt++;
         }
-        return result;
+        System.out.println("Sorry! Too many attempts!");
+        return false;
     }
 
     private Client findClient(Client client){
-        if (client.getBank()==null)
+        if (client.getCard().getBank() == null)
             return null;
         for (Map.Entry<Client, BankAccount> pair : bank.getClientsInformation().entrySet()) {
             if (pair.getKey().equals(client))
@@ -70,12 +75,14 @@ public class ATM {
     }
 
     public int getBalance() {
-        return bank.getClientsInformation().get(client).getAmount();
+        return client.getCard().getBalance();
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-        this.bank = client.getBank();
+    public void setClient(DebitCard card) throws NoSuchClientException {
+        client = card.getClient();
+        if (card.getBank() == null)
+            throw new NoSuchClientException("Bank not found!");
+        bank = card.getBank();
     }
 
     public Bank getBank() {
