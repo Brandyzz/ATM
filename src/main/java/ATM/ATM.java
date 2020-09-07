@@ -42,7 +42,7 @@ public class ATM {
 
     public boolean enterPinCode() throws IOException, NoSuchClientException {
         if (!findClient(client)) {
-            throw new NoSuchClientException("Client not found!");
+           throw new NoSuchClientException("Client not found!");
         }
         BufferedReader pinCode = new BufferedReader(new InputStreamReader(System.in));
         int attempt = 0;
