@@ -1,12 +1,16 @@
 package Bank;
 
 import Client.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Random;
 
 public class BankAccountCreator {
     private Bank bank;
+    private static final Logger LOG = LogManager.getLogger(DebitCard.class);
+
 
     public BankAccountCreator(Bank bank) {
         this.bank = bank;

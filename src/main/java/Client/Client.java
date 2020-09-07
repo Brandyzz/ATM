@@ -1,8 +1,12 @@
 package Client;
 
 import Bank.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Client {
+
+    private static final Logger LOG = LogManager.getLogger(DebitCard.class);
 
     private String firstName;
     private String secondName;

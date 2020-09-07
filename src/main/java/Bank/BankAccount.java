@@ -2,9 +2,7 @@ package Bank;
 
 import Client.Client;
 
-import javax.swing.text.html.Option;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 public final class BankAccount {
@@ -28,10 +26,10 @@ public final class BankAccount {
         cards.add(card);
     }
 
-    public Optional<DebitCard> findCard( DebitCard card){
+    public DebitCard findCard(DebitCard card){
         return cards.stream()
                 .filter(cards -> cards.equals(card))
-                .findFirst();
+                .findFirst().orElseThrow(NullPointerException::new);
     }
 
     public Client getClient() {

@@ -1,12 +1,14 @@
 package Bank;
 
 import Client.Client;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import org.apache.logging.log4j.*;
+
 
 public class DebitCard {
+    private static final Logger LOG = LogManager.getLogger(DebitCard.class);
     private final Bank bank;
     private final Client client;
     private final BankAccount bankAccount;
@@ -17,8 +19,8 @@ public class DebitCard {
         this.bank = bank;
         this.client = client;
         this.bankAccount = bank.getClientsInformation().get(client);
-        System.out.println("Creating new Card.");
-        System.out.println("Enter new pin code.");
+        LOG.info("Creating new Card.");
+        LOG.info("Enter new pin code.");
         BufferedReader pinCodeCreate = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder builder = new StringBuilder();
         while (true) {
@@ -26,11 +28,11 @@ public class DebitCard {
                 builder.delete(0, builder.length());
                 builder.append(pinCodeCreate.readLine());
             if (!builder.toString().matches("\\d+")) {
-                System.out.println("The pin code must contain only numbers! Try again.");
+                LOG.info("The pin code must contain only numbers! Try again.");
                 continue;
             }
             if (builder.length() != 4) {
-                System.out.println("The pin code must consist of 4 numbers! Try again.");
+                LOG.info("The pin code must consist of 4 numbers! Try again.");
                 continue;
             }
             pinCode = Integer.parseInt(builder.toString());
@@ -46,7 +48,7 @@ public class DebitCard {
     }
 
     public void setPinCode() throws IOException {
-        System.out.println("Enter new pin code");
+        LOG.info("Enter new pin code");
         BufferedReader pinCodeCreate = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder builder = new StringBuilder();
         while (true) {
@@ -54,11 +56,11 @@ public class DebitCard {
                 builder.delete(0, builder.length());
             builder.append(pinCodeCreate.readLine());
             if (!builder.toString().matches("\\d+")) {
-                System.out.println("The pin code must contain only numbers! Try again.");
+                LOG.info("The pin code must contain only numbers! Try again.");
                 continue;
             }
             if (builder.length() != 4) {
-                System.out.println("The pin code must consist of 4 numbers! Try again.");
+                LOG.info("The pin code must consist of 4 numbers! Try again.");
                 continue;
             }
             pinCode = Integer.parseInt(builder.toString());

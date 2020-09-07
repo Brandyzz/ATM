@@ -1,12 +1,15 @@
 package Bank;
 
 import Client.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Bank{
+    private static final Logger LOG = LogManager.getLogger(DebitCard.class);
     private String title;
     private Map<Client, BankAccount> clientsInformation;
     private int courseEUR;
